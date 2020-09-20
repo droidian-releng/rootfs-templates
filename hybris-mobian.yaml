@@ -29,15 +29,13 @@ actions:
     packages:
       - mobian-phosh
       - mobian-phosh-phone
-      - openssh-server
 
   - action: run
     chroot: true
-    description: setup halium
-    script: scripts/setup_halium.sh
+    description: add mobian user
+    script: scripts/setup_user.sh
 
   - action: run
     chroot: true
-    description: enable services
-    script: scripts/enable_services.sh
-
+    description: set hostname and generate locale
+    script: scripts/setup_system.sh

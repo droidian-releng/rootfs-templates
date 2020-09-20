@@ -17,12 +17,3 @@ echo $HOSTNAME > /etc/hostname
 sed -i -e '/en_US\.UTF-8/s/^# //g' /etc/locale.gen
 locale-gen
 
-# enable ssh root login
-echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
-
-# make phosh executable
-chmod +x /usr/bin/phosh
-
-# enable services
-systemctl enable ssh
-
