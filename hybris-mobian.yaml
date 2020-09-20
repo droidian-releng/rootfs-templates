@@ -1,0 +1,43 @@
+{{- $architecture := or .architecture "arm64" -}}
+{{- $image := or .image (printf "mobian-android9-%s.tar.gz" $architecture) -}}
+{{- $suite := "bullseye" -}}
+{{- $output_type := "tarball" -}}
+
+architecture: {{ $architecture }}
+actions:
+
+  - action: debootstrap
+    suite: {{ $suite }}
+    components:
+      - main
+    mirror: https://deb.debian.org/debian
+    variant: minbase
+
+  - action: overlay
+    source: mobian/overlay
+    description: Adding mobian overlay
+    destination: /
+
+  - action: run
+    chroot: true
+    description: update apt
+    command: apt update
+
+  - action: apt
+    chroot: true
+    description: install packages
+    packages:
+      - mobian-phosh
+      - mobian-phosh-phone
+      - openssh-server
+
+  - action: run
+    chroot: true
+    description: setup halium
+    script: scripts/setup_halium.sh
+
+  - action: run
+    chroot: true
+    description: enable services
+    script: scripts/enable_services.sh
+

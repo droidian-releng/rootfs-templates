@@ -1,0 +1,6 @@
+Architectures: amd64 arm64 armhf
+Components: main non-free
+Suites: mobian
+Uris: http://repo.mobian-project.org/
+Types: deb deb-src
+Signed-By: /var/lib/extrepo/keys/mobian.asc
