@@ -14,8 +14,13 @@ actions:
     variant: minbase
 
   - action: overlay
-    source: mobian/overlay
+    source: overlays/mobian
     description: Adding mobian overlay
+    destination: /
+
+  - action: overlay
+    source: overlays/hybris-mobian
+    description: Adding hybris-mobian overlay
     destination: /
 
   - action: run
@@ -28,7 +33,6 @@ actions:
     description: install packages
     packages:
       - mobian-phosh
-      - mobian-phosh-phone
 
   - action: run
     chroot: true
