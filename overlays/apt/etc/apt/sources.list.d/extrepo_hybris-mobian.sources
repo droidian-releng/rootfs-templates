@@ -1,6 +1,6 @@
 Architectures: amd64 arm64 armhf
 Components: main
 Suites: bullseye
-Uris: http://production.repo.hybris-mobian.org/
+Uris: https://production.repo.hybris-mobian.org/
 Types: deb
 Signed-By: /var/lib/extrepo/keys/hybris-mobian.asc
