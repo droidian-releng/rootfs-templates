@@ -1,12 +1,9 @@
 {{- $architecture := or .architecture "arm64" -}}
-{{- $image := or .image (printf "hybris-mobian-generic-minimal-%s.tar.gz" $architecture) -}}
 {{- $suite := "bullseye" -}}
 
 {{- $username := or .username "mobian" -}}
 {{- $password := or .password "1234" -}}
 {{- $hostname := or .hostname "mobian" -}}
-
-{{- $output_type := "tarball" -}}
 
 architecture: {{ $architecture }}
 actions:
