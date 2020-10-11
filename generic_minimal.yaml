@@ -25,6 +25,12 @@ actions:
     description: update apt
     command: apt update
 
+  - action: apt
+    chroot: true
+    description: install apt config
+    packages:
+      - hybris-mobian-apt-config
+
   - action: run
     description: Set up default user
     chroot: true
@@ -40,3 +46,4 @@ actions:
     description: install packages
     packages:
       - mobian-phosh
+      
