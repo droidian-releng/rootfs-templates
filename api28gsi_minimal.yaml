@@ -1,0 +1,22 @@
+{{- $architecture := or .architecture "arm64" -}}
+
+architecture: {{ $architecture }}
+actions:
+
+  - action: recipe
+    description: create rootfs
+    recipe: generic_minimal.yaml
+    variables:
+      architecture: {{ $architecture }}
+
+  - action: run
+    description: Set up android
+    chroot: true
+    script: scripts/setup-android.sh
+
+  - action: apt
+    chroot: true
+    description: install adaption-hybris
+    packages:
+      - adaptation-hybris-api28
+
