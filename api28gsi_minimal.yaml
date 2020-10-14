@@ -9,14 +9,35 @@ actions:
     variables:
       architecture: {{ $architecture }}
 
+  - action: overlay
+    source: overlays/phoc-staging
+    description: Adding phoc-staging repo
+    destination: /
+
+  - action: overlay
+    source: overlays/phosh-staging
+    description: Adding phosh-staging repo
+    destination: /
+
   - action: run
-    description: Set up android
     chroot: true
-    script: scripts/setup-android.sh
+    description: update apt
+    command: apt update
 
   - action: apt
     chroot: true
     description: install adaption-hybris
     packages:
       - adaptation-hybris-api28
+
+  - action: run # TMP
+    description: installing phosh and phoc from staging repositories
+    chroot: true
+    command: apt install -y --allow-downgrades phosh phoc
+
+  - action: run
+    description: Set up android
+    chroot: true
+    script: scripts/setup-api28gsi.sh
+
 

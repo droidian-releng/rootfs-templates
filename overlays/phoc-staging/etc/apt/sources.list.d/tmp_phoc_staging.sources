@@ -1,0 +1,6 @@
+Architectures: amd64 arm64 armhf
+Components: main
+Suites: bullseye
+Uris: http://hybris-mobian-phoc.repo.hybris-mobian.org/bullseye-thumbnail-format-fix-with-packaging/
+Types: deb
+Signed-By: /var/lib/extrepo/keys/hybris-mobian.asc

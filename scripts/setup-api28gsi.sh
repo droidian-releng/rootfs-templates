@@ -37,3 +37,6 @@ ln -s /android/persist /persist
 ln -s /android/product /product
 ln -s /android/metadata /metadata
 
+# enable android LXC service
+systemctl enable lxc@android
+

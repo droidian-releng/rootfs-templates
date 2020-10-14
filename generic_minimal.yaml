@@ -45,5 +45,5 @@ actions:
     chroot: true
     description: install packages
     packages:
-      - mobian-phosh
+      - hybris-mobian-minimal
       

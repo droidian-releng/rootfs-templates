@@ -5,19 +5,13 @@ actions:
 
   - action: recipe
     description: create rootfs
-    recipe: generic_minimal.yaml
+    recipe: api28gsi_minimal.yaml
     variables:
       architecture: {{ $architecture }}
 
-  - action: run
-    description: Set up android
-    chroot: true
-    script: scripts/setup-android.sh
-
   - action: apt
     chroot: true
-    description: install adaption-hybris
+    description: install adaptation-hybris
     packages:
       - adaptation-hybris-api28-phone
-      - mobian-phosh-phone
-
+      - hybris-mobian-phone
