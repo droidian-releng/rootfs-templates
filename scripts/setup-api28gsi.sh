@@ -12,6 +12,9 @@ groupadd -g 3003 android_inet
 groupadd -g 3004 android_inet_raw
 groupadd -g 3005 android_inet_admin
 
+# add user mobian
+adduser --disabled-password --gecos "" mobian
+
 # add android users
 useradd radio -g radio
 useradd system -g system
