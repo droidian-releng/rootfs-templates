@@ -1,20 +1,31 @@
 {{- $architecture := or .architecture "arm64" -}}
+{{- $suite := "bullseye" -}}
+
+{{- $username := or .username "mobian" -}}
+{{- $password := or .password "1234" -}}
+{{- $hostname := or .hostname "mobian" -}}
 
 architecture: {{ $architecture }}
 actions:
 
-  - action: recipe
-    description: create rootfs
-    recipe: generic_minimal.yaml
-    variables:
-      architecture: {{ $architecture }}
+  - action: debootstrap
+    suite: {{ $suite }}
+    components:
+      - main
+    mirror: https://deb.debian.org/debian
+    variant: minbase
 
   - action: overlay
+    source: overlays/apt
+    description: Adding apt overlay
+    destination: /
+
+  - action: overlay # tmp
     source: overlays/phoc-staging
     description: Adding phoc-staging repo
     destination: /
 
-  - action: overlay
+  - action: overlay # tmp
     source: overlays/phosh-staging
     description: Adding phosh-staging repo
     destination: /
@@ -26,18 +37,37 @@ actions:
 
   - action: apt
     chroot: true
-    description: install adaption-hybris
+    description: install apt config
     packages:
+      - hybris-mobian-apt-config
+
+  - action: apt
+    chroot: true
+    description: install packages
+    packages:
+      - hybris-mobian-minimal
       - adaptation-hybris-api28
+
+  - action: run
+    description: Set up android
+    chroot: true
+    script: scripts/setup-api28gsi.sh
+
+  - action: run
+    description: Set up default user
+    chroot: true
+    script: scripts/setup-user.sh {{ $username }} {{ $password }}
+
+  - action: run
+    description: Set up system
+    chroot: true
+    script: scripts/setup-system.sh {{ $hostname }}
 
   - action: run # TMP
     description: installing phosh and phoc from staging repositories
     chroot: true
     command: apt install -y --allow-downgrades phosh phoc
 
-  - action: run
-    description: Set up android
-    chroot: true
-    script: scripts/setup-api28gsi.sh
+
 
 
