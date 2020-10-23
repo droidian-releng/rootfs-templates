@@ -5,7 +5,7 @@ actions:
 
   - action: recipe
     description: create rootfs
-    recipe: api28gsi_minimal.yaml
+    recipe: api28gsi_full_base.yaml
     variables:
       architecture: {{ $architecture }}
 

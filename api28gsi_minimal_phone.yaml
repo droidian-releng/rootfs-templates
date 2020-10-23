@@ -1,0 +1,17 @@
+{{- $architecture := or .architecture "arm64" -}}
+
+architecture: {{ $architecture }}
+actions:
+
+  - action: recipe
+    description: create rootfs
+    recipe: api28gsi_minimal_base.yaml
+    variables:
+      architecture: {{ $architecture }}
+
+  - action: apt
+    chroot: true
+    description: install adaptation-hybris
+    packages:
+      - adaptation-hybris-api28-phone
+      - hybris-mobian-phone
