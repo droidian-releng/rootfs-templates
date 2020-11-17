@@ -16,7 +16,7 @@ actions:
     variant: minbase
 
   - action: overlay
-    source: overlays/apt
+    source: apt
     description: Adding apt overlay
     destination: /
 

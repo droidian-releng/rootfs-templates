@@ -16,18 +16,8 @@ actions:
     variant: minbase
 
   - action: overlay
-    source: overlays/apt
+    source: apt
     description: Adding apt overlay
-    destination: /
-
-  - action: overlay # tmp
-    source: overlays/phoc-staging
-    description: Adding phoc-staging repo
-    destination: /
-
-  - action: overlay # tmp
-    source: overlays/phosh-staging
-    description: Adding phosh-staging repo
     destination: /
 
   - action: run
@@ -63,12 +53,5 @@ actions:
     description: Set up system
     chroot: true
     script: scripts/setup-system.sh {{ $hostname }}
-
-  - action: run # TMP
-    description: installing phosh and phoc from staging repositories
-    chroot: true
-    command: apt install -y --allow-downgrades phosh phoc
-
-
 
 

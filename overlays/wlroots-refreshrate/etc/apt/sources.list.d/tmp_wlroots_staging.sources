@@ -1,6 +1,0 @@
-Architectures: amd64 arm64 armhf
-Components: main
-Suites: bullseye
-Uris: http://hybris-mobian-wlroots.repo.hybris-mobian.org/bullseye-refresh-rate/
-Types: deb
-Signed-By: /var/lib/extrepo/keys/hybris-mobian.asc
