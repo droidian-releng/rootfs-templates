@@ -8,6 +8,10 @@ fi
 # create android users and groups
 systemd-sysusers
 
+# disable mobian MTP services
+systemctl disable mobian-usb-gadget
+systemctl disable umtp-responder
+
 # enable android LXC service
 systemctl enable lxc@android
 

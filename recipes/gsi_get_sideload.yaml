@@ -1,0 +1,27 @@
+{{- $architecture := or .architecture "arm64" -}}
+{{- $sideload_name := or .sideload_name "hybris-mobian-devtools_testbuild" -}}
+{{- $packages := or .packages "hybris-mobian-devtools openssh-server kgx hybris-usb" -}}
+{{- $tmpdir := or .tmpdir "/opt/.rootfsbuildertmp" -}}
+
+architecture: {{ $architecture }}
+actions:
+
+  - action: run
+    chroot: true
+    description: Creating tmp directory
+    command: mkdir -p {{ $tmpdir }}
+
+  - action: run
+    chroot: true
+    description: Generating sideloads
+    command: package-sideload-create {{ $tmpdir }}/{{ $sideload_name }}.zip {{ $packages }}
+
+  - action: run
+    chroot: false
+    description: Extracting sideload zip from the rootfs
+    command: mv $(find . -maxdepth 1 -mindepth 1 -type d -name .debos-*)/root{{ $tmpdir }}/{{ $sideload_name }}.zip .
+
+  - action: run
+    chroot: true
+    description: Done, deleting tmp directory
+    command: rm -rf {{ $tmpdir }}

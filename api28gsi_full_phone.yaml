@@ -1,17 +1,27 @@
 {{- $architecture := or .architecture "arm64" -}}
+{{- $suite := "bullseye" -}}
+
+{{- $username := or .username "mobian" -}}
+{{- $password := or .password "1234" -}}
+{{- $hostname := or .hostname "mobian" -}}
 
 architecture: {{ $architecture }}
 actions:
 
   - action: recipe
     description: create rootfs
-    recipe: api28gsi_full_base.yaml
+    recipe: api28gsi_base.yaml
     variables:
       architecture: {{ $architecture }}
+      suite: {{ $suite }}
+      username: {{ $username }}
+      password: {{ $password }}
+      hostname: {{ $hostname }}
 
   - action: apt
     chroot: true
     description: install adaptation-hybris
     packages:
       - adaptation-hybris-api28-phone
+      - hybris-mobian-full
       - hybris-mobian-phone

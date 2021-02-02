@@ -1,0 +1,63 @@
+{{- $architecture := or .architecture "arm64" -}}
+{{- $suite := "bullseye" -}}
+
+{{- $username := or .username "mobian" -}}
+{{- $password := or .password "1234" -}}
+{{- $hostname := or .hostname "mobian" -}}
+
+architecture: {{ $architecture }}
+actions:
+
+  - action: recipe
+    description: Generate base rootfs
+    recipe: recipes/hybris_mobian_base.yaml
+    variables:
+      architecture: {{ $architecture }}
+      suite: {{ $suite }}
+
+  - action: apt
+    chroot: true
+    description: install packages
+    packages:
+      - adaptation-hybris-api28
+
+  - action: run
+    description: Set up android base
+    chroot: true
+    script: scripts/setup-api28gsi.sh
+
+  - action: run
+    description: Set up default user
+    chroot: true
+    script: scripts/setup-user.sh {{ $username }} {{ $password }}
+
+  - action: run
+    description: Set up system
+    chroot: true
+    script: scripts/setup-system.sh {{ $hostname }}
+
+{{ if eq $architecture "armhf" }}
+  - action: run
+    chroot: true
+    description: add arm64 arch
+    command: dpkg --add-architecture arm64
+
+  - action: run
+    chroot: true
+    description: update repositories
+    command: apt update
+{{end}}
+
+{{ if ne $architecture "amd64" }}
+  - action: apt
+    chroot: true
+    description: install android 9 GSI
+    packages:
+      - android-system-gsi-28:arm64
+{{end}}
+
+  - action: apt
+    chroot: true
+    description: install package sideload-tools
+    packages:
+      - package-sideload-tools

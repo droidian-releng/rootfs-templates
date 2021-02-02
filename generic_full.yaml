@@ -9,8 +9,8 @@ architecture: {{ $architecture }}
 actions:
 
   - action: recipe
-    description: create rootfs
-    recipe: api28gsi_base.yaml
+    description: Generate base rootfs
+    recipe: generic_base.yaml
     variables:
       architecture: {{ $architecture }}
       suite: {{ $suite }}
@@ -20,8 +20,6 @@ actions:
 
   - action: apt
     chroot: true
-    description: install adaptation-hybris
+    description: install packages
     packages:
-      - adaptation-hybris-api28-phone
-      - hybris-mobian-phone
-      - hybris-mobian-minimal
+      - hybris-mobian-full

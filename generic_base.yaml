@@ -9,19 +9,18 @@ architecture: {{ $architecture }}
 actions:
 
   - action: recipe
-    description: create rootfs
-    recipe: api28gsi_base.yaml
+    description: Generate base rootfs
+    recipe: recipes/hybris_mobian_base.yaml
     variables:
       architecture: {{ $architecture }}
       suite: {{ $suite }}
-      username: {{ $username }}
-      password: {{ $password }}
-      hostname: {{ $hostname }}
 
-  - action: apt
+  - action: run
+    description: Set up default user
     chroot: true
-    description: install adaptation-hybris
-    packages:
-      - adaptation-hybris-api28-phone
-      - hybris-mobian-phone
-      - hybris-mobian-minimal
+    script: scripts/setup-user.sh {{ $username }} {{ $password }}
+
+  - action: run
+    description: Set up system
+    chroot: true
+    script: scripts/setup-system.sh {{ $hostname }}
