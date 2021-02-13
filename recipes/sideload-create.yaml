@@ -1,10 +1,13 @@
 {{- $architecture := or .architecture "arm64" -}}
+{{- $device_arch := or .device_arch $architecture -}}
 {{- $sideload_name := or .sideload_name "hybris-mobian-devtools_testbuild" -}}
 {{- $packages := or .packages "hybris-mobian-devtools openssh-server kgx hybris-usb" -}}
-{{- $tmpdir := or .tmpdir "/opt/.rootfsbuildertmp" -}}
+{{- $tmpdir := or .tmpdir "/opt/.sideload-tmp-$sideload_name" -}}
 
 architecture: {{ $architecture }}
 actions:
+
+{{ if eq $architecture $device_arch }}
 
   - action: run
     chroot: true
@@ -25,3 +28,12 @@ actions:
     chroot: true
     description: Done, deleting tmp directory
     command: rm -rf {{ $tmpdir }}
+
+{{ else }}
+
+  - action: run
+    chroot: true
+    description: Sideload skipped
+    command: echo "skipped."
+
+{{ end }}
