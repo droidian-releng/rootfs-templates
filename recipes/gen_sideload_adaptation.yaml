@@ -1,0 +1,57 @@
+{{- $architecture := or .architecture "arm64" -}}
+{{- $sideload_name := or .sideload_name "hybris-mobian-adaptation-fxtec-pro1_testbuild" -}}
+{{- $packages := -}}
+{{- $tmpdir := or .tmpdir "/opt/.rootfsbuildertmp" -}}
+
+architecture: {{ $architecture }}
+actions:
+
+  - action: run
+    chroot: true
+    description: Creating tmp directory
+    command: mkdir -p {{ $tmpdir }}
+
+  - action: apt
+    chroot: true
+    description: Installing adaptation package(s)
+    packages: {{ $packages }}
+
+  - action: run
+    chroot: true
+    description: update apt
+    command: apt update
+
+  - action: run
+    chroot: true
+    description: Generating sideload zip
+    command: package-sideload-create {{ $tmpdir }}/{{ $sideload_name }}.zip {{ $packages }}
+
+  - action: run
+    chroot: true
+    description: Remove adaptation package(s)
+    command: apt purge -y {{ $packages }}
+
+  - action: run
+    chroot: true
+    description: Autoremove dependencies
+    command: apt autoremove -y
+
+  - action: run
+    chroot: true
+    description: Clean apt
+    command: apt clean
+
+  - action: run
+    chroot: true
+    description: update apt
+    command: apt update
+
+  - action: run
+    chroot: false
+    description: Extracting sideload zip from the rootfs
+    command: mv $(find . -maxdepth 1 -mindepth 1 -type d -name .debos-*)/root{{ $tmpdir }}/{{ $sideload_name }}.zip .
+
+  - action: run
+    chroot: true
+    description: Done, deleting tmp directory
+    command: rm -rf {{ $tmpdir }}
