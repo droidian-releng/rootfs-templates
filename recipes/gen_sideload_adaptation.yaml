@@ -1,6 +1,6 @@
 {{- $architecture := or .architecture "arm64" -}}
 {{- $sideload_name := or .sideload_name "hybris-mobian-adaptation-fxtec-pro1_testbuild" -}}
-{{- $packages := -}}
+{{- $packages := or .packages "adaptation-fxtec-pro1" -}}
 {{- $tmpdir := or .tmpdir "/opt/.rootfsbuildertmp" -}}
 
 architecture: {{ $architecture }}
