@@ -58,4 +58,10 @@ actions:
     description: Done, deleting tmp directory
     command: rm -rf {{ $tmpdir }}
 
+{{ else }}
+
+  - action: run
+    chroot: true
+    description: Device sideload skipped
+    command: echo "skipped."
 {{ end }}
