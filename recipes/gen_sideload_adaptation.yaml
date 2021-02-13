@@ -1,11 +1,13 @@
 {{- $architecture := or .architecture "arm64" -}}
 {{- $sideload_name := or .sideload_name "hybris-mobian-adaptation-fxtec-pro1_testbuild" -}}
 {{- $packages := or .packages "adaptation-fxtec-pro1" -}}
+{{- $device_arch := or .device_arch "arm64" -}}
 {{- $tmpdir := or .tmpdir "/opt/.rootfsbuildertmp" -}}
 
 architecture: {{ $architecture }}
 actions:
 
+{{ if eq $architecture $device_arch }}
   - action: run
     chroot: true
     description: Creating tmp directory
@@ -55,3 +57,5 @@ actions:
     chroot: true
     description: Done, deleting tmp directory
     command: rm -rf {{ $tmpdir }}
+
+{{ end }}
