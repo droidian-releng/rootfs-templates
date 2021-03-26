@@ -23,5 +23,5 @@ actions:
     description: install adaptation-hybris
     packages:
       - adaptation-hybris-api28-phone
-      - hybris-mobian-full
-      - hybris-mobian-phone
+      - droidian-full
+      - droidian-phone

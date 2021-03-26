@@ -25,5 +25,5 @@ actions:
     chroot: true
     description: install apt config
     packages:
-      - hybris-mobian-apt-config
-      - hybris-mobian-archive-keyring
+      - droidian-apt-config
+      - droidian-archive-keyring

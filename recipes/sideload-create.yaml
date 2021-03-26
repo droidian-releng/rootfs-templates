@@ -1,7 +1,7 @@
 {{- $architecture := or .architecture "arm64" -}}
 {{- $device_arch := or .device_arch $architecture -}}
-{{- $sideload_name := or .sideload_name "hybris-mobian-devtools_testbuild" -}}
-{{- $packages := or .packages "hybris-mobian-devtools openssh-server kgx hybris-usb" -}}
+{{- $sideload_name := or .sideload_name "droidian-devtools_testbuild" -}}
+{{- $packages := or .packages "droidian-devtools openssh-server kgx hybris-usb" -}}
 {{- $tmpdir := or .tmpdir "/opt/.sideload-tmp-$sideload_name" -}}
 
 architecture: {{ $architecture }}

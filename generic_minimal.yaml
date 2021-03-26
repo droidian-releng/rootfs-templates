@@ -22,4 +22,4 @@ actions:
     chroot: true
     description: install packages
     packages:
-      - hybris-mobian-minimal
+      - droidian-minimal

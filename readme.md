@@ -1,3 +1,3 @@
 ### rootfs-templates
 
-A set of debos recipes for building hybris-mobian's rootfs
+A set of debos recipes for building Droidian's rootfs
