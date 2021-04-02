@@ -1,9 +1,9 @@
 {{- $architecture := or .architecture "arm64" -}}
 {{- $suite := "bullseye" -}}
 
-{{- $username := or .username "mobian" -}}
+{{- $username := or .username "droidian" -}}
 {{- $password := or .password "1234" -}}
-{{- $hostname := or .hostname "mobian" -}}
+{{- $hostname := or .hostname "droidian" -}}
 
 architecture: {{ $architecture }}
 actions:
