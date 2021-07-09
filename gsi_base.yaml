@@ -1,4 +1,5 @@
 {{- $architecture := or .architecture "arm64" -}}
+{{- $apilevel := or .apilevel "28" -}}
 {{- $suite := "bullseye" -}}
 
 {{- $username := or .username "droidian" -}}
@@ -19,7 +20,7 @@ actions:
     chroot: true
     description: install packages
     packages:
-      - adaptation-hybris-api28
+      - adaptation-hybris-api{{ $apilevel }}
 
   - action: run
     description: Set up android base
@@ -51,9 +52,9 @@ actions:
 {{ if ne $architecture "amd64" }}
   - action: apt
     chroot: true
-    description: install android 9 GSI
+    description: install android GSI
     packages:
-      - android-system-gsi-28:arm64
+      - android-system-gsi-{{ $apilevel }}:arm64
 {{end}}
 
   - action: apt
