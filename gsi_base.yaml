@@ -8,13 +8,24 @@
 
 architecture: {{ $architecture }}
 actions:
-
   - action: recipe
     description: Generate base rootfs
     recipe: recipes/droidian_base.yaml
     variables:
       architecture: {{ $architecture }}
       suite: {{ $suite }}
+
+{{ if eq $apilevel "29" }}
+  - action: overlay
+    description: Adding overlay for API 29 devices
+    source: ./apt_api29
+    destination: /
+
+  - action: run
+    description: update apt
+    chroot: true
+    command: apt update
+{{ end }}
 
   - action: apt
     chroot: true

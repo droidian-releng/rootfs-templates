@@ -1,0 +1,20 @@
+Architectures: amd64 arm64 armhf
+Components: main
+Suites: bullseye
+Uris: http://droidian-libhybris.repo.droidian.org/bullseye-q/
+Types: deb
+Signed-By: /var/lib/extrepo/keys/hybris-mobian.asc
+
+Architectures: amd64 arm64 armhf
+Components: main
+Suites: bullseye
+Uris: http://droidian-adaptation-hybris.repo.droidian.org/bullseye-q/
+Types: deb
+Signed-By: /var/lib/extrepo/keys/hybris-mobian.asc
+
+Architectures: amd64 arm64 armhf
+Components: main
+Suites: bullseye
+Uris: http://droidian-lxc-android.repo.droidian.org/bullseye-q/
+Types: deb
+Signed-By: /var/lib/extrepo/keys/hybris-mobian.asc
