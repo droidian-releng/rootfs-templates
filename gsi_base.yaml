@@ -24,7 +24,7 @@ actions:
   - action: run
     description: Set up android base
     chroot: true
-    script: scripts/setup-api28gsi.sh
+    script: scripts/setup-gsi.sh
 
   - action: run
     description: Set up default user

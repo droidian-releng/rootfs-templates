@@ -10,7 +10,7 @@ actions:
 
   - action: recipe
     description: create rootfs
-    recipe: api28gsi_base.yaml
+    recipe: gsi_base.yaml
     variables:
       architecture: {{ $architecture }}
       suite: {{ $suite }}
@@ -24,4 +24,3 @@ actions:
     packages:
       - adaptation-hybris-api28-phone
       - droidian-full
-      - droidian-phone
