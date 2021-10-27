@@ -9,7 +9,7 @@ architecture: {{ $architecture }}
 actions:
 
   - action: recipe
-    description: Generate base rootfs
+    description: create rootfs
     recipe: generic_base.yaml
     variables:
       architecture: {{ $architecture }}
@@ -20,6 +20,8 @@ actions:
 
   - action: apt
     chroot: true
-    description: install packages
+    description: install adaptation-hybris
     packages:
       - droidian-full
+      - adaptation-hybris-api28-phone
+      - droidian-phone
