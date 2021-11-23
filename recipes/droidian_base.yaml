@@ -27,3 +27,9 @@ actions:
     packages:
       - droidian-apt-config
       - droidian-archive-keyring
+      - mobian-archive-keyring
+
+  - action: run
+    description: Clean repositories
+    chroot: true
+    script: ../scripts/clean-bootstrap-repositories.sh
