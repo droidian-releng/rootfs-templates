@@ -1,5 +1,5 @@
 {{- $architecture := or .architecture "arm64" -}}
-{{- $suite := "bullseye" -}}
+{{- $suite := "bookworm" -}}
 
 {{- $username := or .username "droidian" -}}
 {{- $password := or .password "1234" -}}
