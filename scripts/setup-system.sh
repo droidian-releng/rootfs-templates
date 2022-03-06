@@ -14,3 +14,6 @@ plymouth-set-default-theme mobian
 if [ -f /usr/bin/phosh ]; then
     systemctl enable phosh.service
 fi
+
+# Enable resolved
+systemctl enable systemd-resolved
