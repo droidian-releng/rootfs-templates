@@ -1,6 +1,7 @@
 {{- $architecture := or .architecture "arm64" -}}
 {{- $apilevel := or .apilevel "28" -}}
 {{- $suite := "bookworm" -}}
+{{- $version := or .version "nightly" -}}
 
 {{- $username := or .username "droidian" -}}
 {{- $password := or .password "1234" -}}
@@ -27,3 +28,14 @@ actions:
       - adaptation-hybris-api{{ $apilevel }}-phone
       - droidian-full
       - droidian-phone
+
+{{ if eq $version "nightly" }}
+  - action: apt
+    chroot: true
+    description: install devtools (nightly)
+    packages:
+      - droidian-devtools
+      - droidian-quirks-regenerate-ssh-keys
+      - adaptation-hybris-devtools
+{{end}}
+
