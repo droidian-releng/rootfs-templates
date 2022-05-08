@@ -10,9 +10,7 @@ actions:
     chroot: true
     command: apt -y autoremove --purge && apt clean
 
-{{ if eq $output_type "image" }}
   - action: run
-    description: Create bmap file
-    postprocess: true
-    command: bmaptool create {{ $image }} > {{ $image }}.bmap
-{{ end }}
+    description: Build deconfiguration
+    chroot: true
+    script: ../scripts/build-configuration.sh deconfigure

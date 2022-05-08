@@ -8,7 +8,7 @@ actions:
     suite: {{ $suite }}
     components:
       - main
-    mirror: https://deb.debian.org/debian
+    mirror: http://deb.debian.org/debian
     variant: minbase
 
   - action: overlay
@@ -16,15 +16,12 @@ actions:
     description: Adding apt overlay
     destination: /
 
-  - action: run
-    chroot: true
-    description: update apt
-    command: apt update
-
   - action: apt
     chroot: true
     description: install apt config
+    update: true
     packages:
+      - ca-certificates
       - droidian-apt-config
       - droidian-archive-keyring
       - mobian-archive-keyring
@@ -33,3 +30,8 @@ actions:
     description: Clean repositories
     chroot: true
     script: ../scripts/clean-bootstrap-repositories.sh
+
+  - action: run
+    description: Build configuration
+    chroot: true
+    script: ../scripts/build-configuration.sh configure

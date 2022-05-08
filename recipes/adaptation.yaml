@@ -1,0 +1,10 @@
+{{- $architecture := or .architecture "arm64" -}}
+{{- $packages := or .packages "" -}}
+
+architecture: {{ $architecture }}
+actions:
+
+ - action: run
+   chroot: true
+   description: Install device adaptation
+   script: ../scripts/install-adaptation.sh {{ $packages }}

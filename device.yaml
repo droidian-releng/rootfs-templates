@@ -1,0 +1,54 @@
+{{- $architecture := or .architecture "arm64" -}}
+{{- $suffix := or .suffix "testbuild" -}}
+{{- $image := or .image (printf "droidian-rootfs-api29gsi-%s%s.zip" $architecture $suffix) -}}
+{{- $output_type :=  or .output_type "rootfs" -}}
+{{- $apilevel := or .apilevel 28 -}}
+{{- $edition := or .edition "phosh" -}}
+{{- $variant := or .variant "phone" -}}
+
+architecture: {{ $architecture }}
+actions:
+
+  - action: recipe
+    description: Generate rootfs
+    recipe: droidian_{{ $edition }}.yaml
+    variables:
+      architecture: {{ $architecture }}
+      variant: {{ $variant }}
+      apilevel: {{ $apilevel }}
+
+  - action: recipe
+    description: Install device-specific packages
+    recipe: ../generated/product.yaml
+    variables:
+      architecture: {{ $architecture }}
+      edition: {{ $edition }}
+      variant: {{ $variant }}
+      apilevel: {{ $apilevel }}
+
+  - action: recipe
+    description: Polish the image
+    recipe: recipes/polish.yaml
+    variables:
+      architecture: {{ $architecture }}
+      image: {{ $image }}
+      output_type: {{ $output_type }}
+
+{{ if eq $output_type "rootfs" }}
+  - action: run
+    chroot: false
+    description: Generate flashable zip
+    script: scripts/genzip.sh {{ $image }}
+{{end}}
+
+{{ if eq $output_type "image" }}
+  - action: run
+    chroot: false
+    description: Generate flashable image
+    script: scripts/genimage.sh {{ $image }}
+{{end}}
+
+  - action: run
+    chroot: false
+    description: Show build output
+    command: ls -lha

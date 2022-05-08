@@ -2,6 +2,7 @@
 {{- $apilevel := or .apilevel "28" -}}
 {{- $suite := "bookworm" -}}
 {{- $version := or .version "nightly" -}}
+{{- $variant := or .variant "phone" -}}
 
 {{- $username := or .username "droidian" -}}
 {{- $password := or .password "1234" -}}
@@ -12,7 +13,7 @@ actions:
 
   - action: recipe
     description: create rootfs
-    recipe: gsi_base.yaml
+    recipe: droidian_gsi_base.yaml
     variables:
       architecture: {{ $architecture }}
       apilevel: {{ $apilevel }}
@@ -23,11 +24,18 @@ actions:
 
   - action: apt
     chroot: true
-    description: install adaptation-hybris
+    description: install droidian-phosh
+    packages:
+      - droidian-phosh-full
+
+{{ if eq $variant "phone" }}
+  - action: apt
+    chroot: true
+    description: install packages for the phone variant
     packages:
       - adaptation-hybris-api{{ $apilevel }}-phone
-      - droidian-full
-      - droidian-phone
+      - droidian-phosh-phone
+{{end}}
 
 {{ if eq $version "nightly" }}
   - action: apt
