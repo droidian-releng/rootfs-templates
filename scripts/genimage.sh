@@ -118,6 +118,6 @@ cat \
 
 # generate zip
 echo "Generating zip"
-(cd ${WORK_DIR}/target ; zip -r9 ../../$ZIP_NAME * -x .git README.md *placeholder)
+(cd ${WORK_DIR}/target ; zip -r9 ../../out/$ZIP_NAME * -x .git README.md *placeholder)
 
 echo "done."

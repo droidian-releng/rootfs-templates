@@ -22,7 +22,7 @@ actions:
   - action: run
     chroot: false
     description: Extracting sideload zip from the rootfs
-    command: mv $(find . -maxdepth 1 -mindepth 1 -type d -name .debos-*)/root{{ $tmpdir }}/{{ $sideload_name }}.zip .
+    command: mv $(find . -maxdepth 1 -mindepth 1 -type d -name .debos-*)/root{{ $tmpdir }}/{{ $sideload_name }}.zip ./out
 
   - action: run
     chroot: true

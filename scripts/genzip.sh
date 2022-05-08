@@ -29,6 +29,6 @@ umount $IMG_MOUNTPOINT
 # generate flashable zip
 echo "Generating recovery flashable zip"
 mv rootfs.img android-recovery-flashing-template/data/rootfs.img
-(cd android-recovery-flashing-template ; zip -r9 ../$ZIP_NAME * -x .git README.md *placeholder)
+(cd android-recovery-flashing-template ; zip -r9 ../out/$ZIP_NAME * -x .git README.md *placeholder)
 
 echo "done."
