@@ -5,6 +5,7 @@
 {{- $apilevel := or .apilevel 28 -}}
 {{- $edition := or .edition "phosh" -}}
 {{- $variant := or .variant "phone" -}}
+{{- $use_internal_repository := or .use_internal_repository "no" -}}
 
 architecture: {{ $architecture }}
 actions:
@@ -16,6 +17,7 @@ actions:
       architecture: {{ $architecture }}
       variant: {{ $variant }}
       apilevel: {{ $apilevel }}
+      use_internal_repository: {{ $use_internal_repository }}
 
   - action: recipe
     description: Install device-specific packages

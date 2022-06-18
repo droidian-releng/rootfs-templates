@@ -1,6 +1,7 @@
 {{- $architecture := or .architecture "arm64" -}}
 {{- $apilevel := or .apilevel "28" -}}
 {{- $suite := "bookworm" -}}
+{{- $use_internal_repository := or .use_internal_repository "no" -}}
 
 {{- $username := or .username "droidian" -}}
 {{- $password := or .password "1234" -}}
@@ -15,6 +16,7 @@ actions:
     variables:
       architecture: {{ $architecture }}
       suite: {{ $suite }}
+      use_internal_repository: {{ $use_internal_repository }}
 
   - action: apt
     chroot: true

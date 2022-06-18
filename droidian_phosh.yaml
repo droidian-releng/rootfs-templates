@@ -3,6 +3,7 @@
 {{- $suite := "bookworm" -}}
 {{- $version := or .version "nightly" -}}
 {{- $variant := or .variant "phone" -}}
+{{- $use_internal_repository := or .use_internal_repository "no" -}}
 
 {{- $username := or .username "droidian" -}}
 {{- $password := or .password "1234" -}}
@@ -18,6 +19,7 @@ actions:
       architecture: {{ $architecture }}
       apilevel: {{ $apilevel }}
       suite: {{ $suite }}
+      use_internal_repository: {{ $use_internal_repository }}
       username: {{ $username }}
       password: {{ $password }}
       hostname: {{ $hostname }}

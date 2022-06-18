@@ -58,12 +58,33 @@ deconfigure_prevent_flashing() {
 	rm -f /etc/flash-bootimage/01prevent-flashing
 }
 
+configure_internal_repository() {
+	[ -e "/var/lib/droidian-internal-repository" ] || return 0
+
+	cat > /etc/apt/sources.list.d/droidian-internal-repository.list <<EOF
+deb [trusted=yes] file:///var/lib/droidian-internal-repository/ ./
+EOF
+
+	apt update
+}
+
+deconfigure_internal_repository() {
+	[ -e "/etc/apt/sources.list.d/droidian-internal-repository.list" ] || return 0
+
+	rm -f /etc/apt/sources.list.d/droidian-internal-repository.list
+	rm -rf /var/lib/droidian-internal-repository
+
+	apt update
+}
+
 case "${1}" in
 	"configure")
+		configure_internal_repository
 		configure_proxy
 		configure_prevent_flashing
 		;;
 	"deconfigure")
+		deconfigure_internal_repository
 		deconfigure_proxy
 		deconfigure_prevent_flashing
 		;;

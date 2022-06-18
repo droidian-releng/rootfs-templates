@@ -1,5 +1,6 @@
 {{- $architecture := or .architecture "arm64" -}}
 {{- $suite := "bookworm" -}}
+{{- $use_internal_repository := or .use_internal_repository "no" -}}
 
 architecture: {{ $architecture }}
 actions:
@@ -30,6 +31,13 @@ actions:
     description: Clean repositories
     chroot: true
     script: ../scripts/clean-bootstrap-repositories.sh
+
+{{ if eq $use_internal_repository "yes" }}
+  - action: overlay
+    source: ../../apt
+    description: Add internal repository
+    destination: /var/lib/droidian-internal-repository
+{{end}}
 
   - action: run
     description: Build configuration
