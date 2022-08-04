@@ -3,6 +3,7 @@
 {{- $image := or .image (printf "droidian-rootfs-api29gsi-%s%s.zip" $architecture $suffix) -}}
 {{- $output_type :=  or .output_type "rootfs" -}}
 {{- $apilevel := or .apilevel 28 -}}
+{{- $version := or .version "nightly" -}}
 {{- $edition := or .edition "phosh" -}}
 {{- $variant := or .variant "phone" -}}
 {{- $use_internal_repository := or .use_internal_repository "no" -}}
@@ -17,6 +18,7 @@ actions:
       architecture: {{ $architecture }}
       variant: {{ $variant }}
       apilevel: {{ $apilevel }}
+      version: {{ $version }}
       use_internal_repository: {{ $use_internal_repository }}
 
   - action: recipe
