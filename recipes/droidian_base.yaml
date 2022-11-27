@@ -43,3 +43,9 @@ actions:
     description: Build configuration
     chroot: true
     script: ../scripts/build-configuration.sh configure
+
+  - action: apt
+    chroot: true
+    description: install droidian-base metapackage
+    packages:
+      - droidian-base
