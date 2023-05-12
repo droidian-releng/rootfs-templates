@@ -12,6 +12,6 @@ update-locale LANG=en_US.UTF8
 plymouth-set-default-theme mobian
 
 # Load phosh on startup if package is installed
-if [ -f /usr/bin/phosh ]; then
+if [ -f /usr/bin/phosh-session ]; then
     systemctl enable phosh.service
 fi
