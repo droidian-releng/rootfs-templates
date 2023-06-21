@@ -49,3 +49,8 @@ actions:
       - adaptation-hybris-devtools
 {{end}}
 
+  - action: run
+    description: clean droidian-phosh
+    chroot: true
+    script: scripts/clean-phosh.sh
+
