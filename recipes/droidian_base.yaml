@@ -1,5 +1,5 @@
 {{- $architecture := or .architecture "arm64" -}}
-{{- $suite := "bookworm" -}}
+{{- $suite := "trixie" -}}
 {{- $use_internal_repository := or .use_internal_repository "no" -}}
 
 architecture: {{ $architecture }}

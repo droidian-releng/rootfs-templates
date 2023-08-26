@@ -1,6 +1,6 @@
 {{- $architecture := or .architecture "arm64" -}}
 {{- $apilevel := or .apilevel "28" -}}
-{{- $suite := "bookworm" -}}
+{{- $suite := "trixie" -}}
 {{- $use_internal_repository := or .use_internal_repository "no" -}}
 
 {{- $username := or .username "droidian" -}}

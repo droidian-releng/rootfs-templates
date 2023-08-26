@@ -1,6 +1,6 @@
 Architectures: amd64 arm64 armhf
 Components: main
-Suites: bookworm
+Suites: trixie
 Uris: http://production.repo.droidian.org/
 Types: deb
 Signed-By: /var/lib/extrepo/keys/hybris-mobian.asc
