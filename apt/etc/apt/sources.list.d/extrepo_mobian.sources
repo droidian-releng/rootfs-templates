@@ -1,6 +1,6 @@
 Architectures: amd64 arm64 armhf
 Components: main non-free
-Suites: bookworm
-Uris: http://repo.mobian-project.org/
+Suites: trixie
+Uris: http://repo.mobian.org/
 Types: deb deb-src
 Signed-By: /var/lib/extrepo/keys/mobian.asc
