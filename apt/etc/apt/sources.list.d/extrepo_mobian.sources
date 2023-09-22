@@ -1,5 +1,5 @@
 Architectures: amd64 arm64 armhf
-Components: main non-free
+Components: main non-free-firmware
 Suites: trixie
 Uris: http://repo.mobian.org/
 Types: deb deb-src
