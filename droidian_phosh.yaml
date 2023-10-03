@@ -49,6 +49,12 @@ actions:
       - adaptation-hybris-devtools
 {{end}}
 
+  - action: apt
+    chroot: true
+    description: install droidian-extras
+    packages:
+      - droidian-extras
+
   - action: run
     description: clean droidian-phosh
     chroot: true
