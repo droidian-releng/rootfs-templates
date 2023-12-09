@@ -28,6 +28,7 @@ actions:
     chroot: true
     description: install droidian-phosh
     packages:
+      - adaptation-hybris-phosh
       - droidian-phosh-full
 
 {{ if eq $variant "phone" }}

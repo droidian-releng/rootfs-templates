@@ -36,6 +36,7 @@ actions:
     chroot: true
     description: install cutie
     packages:
+      - adaptation-hybris-cutie
       - droidian-cutie-full
 
 {{ if eq $variant "phone" }}
