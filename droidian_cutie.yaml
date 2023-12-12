@@ -37,6 +37,7 @@ actions:
     description: install cutie
     packages:
       - cutie-full
+      - adaptation-hybris-cutie
 
 {{ if eq $variant "phone" }}
   - action: apt
