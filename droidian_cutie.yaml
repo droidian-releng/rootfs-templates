@@ -44,8 +44,6 @@ actions:
     chroot: true
     description: install packages for the phone variant
     packages:
-      - droidian-quirks-dummy-modemmanager
-      - droidian-quirks-dummy-ofono2mm
       - adaptation-hybris-api{{ $apilevel }}-phone
       - cutie-phone-full
 {{end}}
