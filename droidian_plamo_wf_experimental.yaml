@@ -1,0 +1,58 @@
+{{- $architecture := or .architecture "arm64" -}}
+{{- $apilevel := or .apilevel "28" -}}
+{{- $suite := "trixie" -}}
+{{- $version := or .version "next" -}}
+{{- $variant := or .variant "phone" -}}
+{{- $use_internal_repository := or .use_internal_repository "no" -}}
+{{- $droidian_version := or .droidian_version "current" -}}
+{{- $droidian_variant := or .droidian_variant "" -}}
+
+{{- $username := or .username "droidian" -}}
+{{- $password := or .password "1234" -}}
+{{- $hostname := or .hostname "droidian" -}}
+
+architecture: {{ $architecture }}
+actions:
+
+  - action: recipe
+    description: create rootfs
+    recipe: droidian_gsi_base.yaml
+    variables:
+      architecture: {{ $architecture }}
+      apilevel: {{ $apilevel }}
+      suite: {{ $suite }}
+      use_internal_repository: {{ $use_internal_repository }}
+      droidian_version: {{ $droidian_version }}
+      droidian_variant: {{ $droidian_variant }}
+      username: {{ $username }}
+      password: {{ $password }}
+      hostname: {{ $hostname }}
+
+  - action: apt
+    chroot: true
+    description: install droidian-plamo-wf-full
+    packages:
+      - droidian-plamo-wf-full
+
+{{ if eq $variant "phone" }}
+  - action: apt
+    chroot: true
+    description: install packages for the phone variant
+    packages:
+      - adaptation-hybris-api{{ $apilevel }}-phone
+{{end}}
+
+{{ if eq $version "next" }}
+  - action: apt
+    chroot: true
+    description: install devtools (next)
+    packages:
+      - droidian-devtools
+      - droidian-quirks-regenerate-ssh-keys
+      - adaptation-hybris-devtools
+{{end}}
+
+  - action: run
+    description: clean droidian-phosh
+    chroot: true
+    script: scripts/clean-phosh.sh
