@@ -62,5 +62,5 @@ actions:
   - action: run
     description: clean droidian-phosh
     chroot: true
-    script: scripts/clean-phosh.sh
+    script: scripts/clean.sh
 

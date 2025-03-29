@@ -66,4 +66,4 @@ actions:
   - action: run
     description: clean cutie
     chroot: true
-    script: scripts/clean-cutie.sh
+    script: scripts/clean.sh
