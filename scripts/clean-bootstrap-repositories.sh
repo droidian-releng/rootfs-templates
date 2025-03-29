@@ -18,7 +18,7 @@ EOF
 # an equivalent package too
 if [ -n "${2}" ]; then
 	cat > /etc/apt/apt.conf.d/90-droidian-variant <<EOF
-Acquire::Droidian::Variant "${2/_/}";
+Acquire::Droidian::Variant "${2/-/}";
 EOF
 fi
 
