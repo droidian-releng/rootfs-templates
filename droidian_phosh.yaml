@@ -32,7 +32,7 @@ actions:
     chroot: true
     description: install droidian-phosh
     packages:
-      - droidian-phosh-full
+      - droidian-phosh-minimal
 
 {{ if eq $variant "phone" }}
   - action: apt
@@ -52,12 +52,6 @@ actions:
       - droidian-quirks-regenerate-ssh-keys
       - adaptation-hybris-devtools
 {{end}}
-
-  - action: apt
-    chroot: true
-    description: install droidian-extras
-    packages:
-      - droidian-extras
 
   - action: run
     description: clean droidian-phosh
