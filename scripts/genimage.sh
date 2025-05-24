@@ -104,11 +104,13 @@ bootimage=$(find ${ROOTFS_PATH}/boot -iname boot.img* -type f | head -n 1)
 recovery=$(find ${ROOTFS_PATH}/boot -iname recovery.img* -type f | head -n 1)
 dtbo=$(find ${ROOTFS_PATH}/boot -iname dtbo.img* -type f | head -n 1)
 vbmeta=$(find ${ROOTFS_PATH}/boot -iname vbmeta.img* -type f | head -n 1)
+vendorboot=$(find ${ROOTFS_PATH}/boot -iname vendor_boot.img* -type f | head -n 1)
 
 [ -e "${bootimage}" ] && cp "${bootimage}" ${WORK_DIR}/target/data/boot.img
 [ -e "${recovery}" ] && cp "${recovery}" ${WORK_DIR}/target/data/recovery.img
 [ -e "${dtbo}" ] && cp "${dtbo}" ${WORK_DIR}/target/data/dtbo.img
 [ -e "${vbmeta}" ] && cp "${vbmeta}" ${WORK_DIR}/target/data/vbmeta.img
+[ -e "${vendorboot}" ] && cp "${vendorboot}" ${WORK_DIR}/target/data/vendor_boot.img
 
 if [ -e "${bootimage}" ]; then
 	kernel_version=$(basename ${bootimage})
